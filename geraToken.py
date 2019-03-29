@@ -4,6 +4,13 @@ import hashlib
 import base64
 import requests
 
+"""
+Classe para integração com sistema MisterChef
+
+http://tdn.totvs.com/display/public/TChef/API+Pedidos+Online#APIPedidosOnline-Autentica%C3%A7%C3%A3oeToken
+
+"""
+
 HOST = 'http://hchefweb.bematech.com.br/IntegracaoPedidosOnline/'
 HHOST = 'http://hchefweb.bematech.com.br/IntegracaoPedidosOnline/'
 
