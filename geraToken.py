@@ -22,15 +22,15 @@ class GenerateToken:
 
     def gerarToken(self):
         data = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
-        token = str(self.codigo_integracao) + str(self.chave_cliente) + data
+        token = str(self.codigo_integracao) +"|"+ str(self.chave_cliente) +"|"+ data
         token_md5 = hashlib.md5(token.encode('utf-8')).hexdigest()
-        token_base64 = base64.urlsafe_b64encode(token_md5.encode('UTF-8')).decode('ascii')
+        token_base64 = base64.b64encode(token_md5.encode('UTF-8')).decode('ascii')
         return 'Basic ' + token_base64
 
 
     def send_test(self, token):
 
-        url = HOST + "CadastroService.svc/ObterCardapio"
+        url = HHOST + "CadastroService.svc/ObterCardapio"
         datas = {
                    "parametros": {
                       "CodigoEstabelecimento": "96700001",
@@ -54,8 +54,20 @@ def dump(obj):
 
 if __name__ == '__main__':
 
-    gerador = GenerateToken(codigo_integracao=1,chave_cliente=12345678)
+    gerador = GenerateToken(codigo_integracao=1,chave_cliente=96725436)
     token = gerador.gerarToken()
     print(token)
-    #gerador.send_test(token[0])
+
+    gerador.send_test(token)
+
+    #19672543620190329160555
+
+    #df15bb9b5f5f3178c915da34092205f5
+    #DF15BB9B5F5F3178C915DA34092205F5
+
+    #ZGYxNWJiOWI1ZjVmMzE3OGM5MTVkYTM0MDkyMjA1ZjU=
+    #REYxNUJCOUI1RjVGMzE3OEM5MTVEQTM0MDkyMjA1RjU=
+
+
+
 
